@@ -118,10 +118,10 @@ if "chat_history" not in st.session_state:
     today = datetime.now().strftime("%A, %d %B %Y")
     st.session_state.chat_history = [
         SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
-Today's date is {today}.
-Use DuckDuckGo tool for ALL searches including news, facts, people, places.
-Only use Wikipedia tool when specifically asked for Wikipedia information.
-Be friendly, smart and helpful. Keep answers clear.""")
+        Today's date is {today}.
+        Use DuckDuckGo tool for ALL searches including news, facts, people, places.
+        Only use Wikipedia tool when specifically asked for Wikipedia information.
+        Be friendly, smart and helpful. Keep answers clear.""")
     ]
 
 if "messages" not in st.session_state:
@@ -173,10 +173,10 @@ with st.sidebar:
         today = datetime.now().strftime("%A, %d %B %Y")
     st.session_state.chat_history = [
         SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
-Today's date is {today}.
-Use DuckDuckGo tool for ALL searches including news, facts, people, places.
-Only use Wikipedia tool when specifically asked for Wikipedia information.
-Be friendly, smart and helpful. Keep answers clear.""")
+        Today's date is {today}.
+        Use DuckDuckGo tool for ALL searches including news, facts, people, places.
+        Only use Wikipedia tool when specifically asked for Wikipedia information.
+        Be friendly, smart and helpful. Keep answers clear.""")
     ]
     st.session_state.messages = []
     st.rerun()  # refresh the page
