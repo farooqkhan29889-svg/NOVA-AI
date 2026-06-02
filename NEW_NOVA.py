@@ -1,60 +1,4 @@
-# from dotenv import load_dotenv
-# from datetime import datetime
-# from langchain_groq import ChatGroq
-# from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
-# from langchain_community.tools import DuckDuckGoSearchRun, WikipediaQueryRun
-# from langchain_community.utilities import WikipediaAPIWrapper
 
-# load_dotenv()
-
-# search_tool = DuckDuckGoSearchRun()
-# wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
-
-# tools = [search_tool,wiki_tool]
-
-# llm = ChatGroq(model="llama-3.1-8b-instant",temperature=0.7)
-# llm_with_tools = llm.bind_tools(tools)
-
-# today = datetime.now().strftime("%A, %d %B %Y")
-# chet_history = [SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
-# Today's date is {today}.
-# Use DuckDuckGo for news and searches.
-# Use Wikipedia for facts about people and history.""")
-# ]
-
-# # main program
-# while True:
-#     prompt = input("You:")
-    
-#     if prompt.lower() == 'exit':
-#         break
-#     chet_history.append(HumanMessage(content=prompt))
-#     response = llm.invoke(chet_history)
-#     if response.tool_calls:
-#         chet_history.append(response)
-#         for tool_call in response.tool_calls:
-#                 tool_name  = tool_call[""]
-#         tool_input = tool_call["args"].get("query", "")
-#         print(f"🔧 Using: {tool_name} → {tool_input}")
-#         if "duck" in tool_name.lower():
-#             result = search_tool.run(tool_input)
-#         else:
-#             result = wiki_tool.run(tool_input)
-#         chet_history.append(
-#                 ToolMessage(content=result, tool_call_id=tool_call["id"])
-#             )
-#         final = llm_with_tools.invoke(chet_history)
-#         ai_reply = final.content
-#     else:
-#         ai_reply = response.content
-
-#     chet_history.append(AIMessage(content=ai_reply))
-#     print(f"\nNOVA: {ai_reply}\n")
-
-## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-## NOVA AI — Streamlit UI
-## Built by Farooq | Powered by Groq + LangChain
-## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # ── STEP 1: IMPORTS ──────────────────────────────
 # Same as before PLUS streamlit
@@ -192,7 +136,7 @@ def load_tools_and_llm():
     search_tool    = DuckDuckGoSearchRun()
     wiki_tool      = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
     tools          = [search_tool, wiki_tool]
-    llm            = ChatGroq(model="llama-3.1-8b-instant", temperature=0.7)
+    llm            = ChatGroq(model="llama-3.1-8b-instant",temperature=0.7,api_key=st.secrets["GROQ_API_KEY"])
     llm_with_tools = llm.bind_tools(tools)
     return search_tool, wiki_tool, llm_with_tools
 
