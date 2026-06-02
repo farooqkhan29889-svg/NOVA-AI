@@ -119,8 +119,8 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
 Today's date is {today}.
-Use DuckDuckGo for current news, weather, scores, prices.
-Use Wikipedia for facts about people, history, science.
+Use DuckDuckGo tool for ALL searches including news, facts, people, places.
+Only use Wikipedia tool when specifically asked for Wikipedia information.
 Be friendly, smart and helpful. Keep answers clear.""")
     ]
 
@@ -169,16 +169,17 @@ with st.sidebar:
     st.divider()
 
     # Clear chat button
-    if st.button("🗑️ Clear Chat"):
+    if "chat_history" not in st.session_state:
         today = datetime.now().strftime("%A, %d %B %Y")
-        st.session_state.chat_history = [
-            SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
+    st.session_state.chat_history = [
+        SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
 Today's date is {today}.
-Use DuckDuckGo for current news, weather, scores, prices.
-Use Wikipedia for facts about people, history, science.""")
-        ]
-        st.session_state.messages = []
-        st.rerun()  # refresh the page
+Use DuckDuckGo tool for ALL searches including news, facts, people, places.
+Only use Wikipedia tool when specifically asked for Wikipedia information.
+Be friendly, smart and helpful. Keep answers clear.""")
+    ]
+    st.session_state.messages = []
+    st.rerun()  # refresh the page
 
     st.divider()
     st.markdown("**Built by Farooq 🚀**")
