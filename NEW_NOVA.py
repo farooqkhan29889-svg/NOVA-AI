@@ -1,5 +1,4 @@
 
-
 # ── STEP 1: IMPORTS ──────────────────────────────
 # Same as before PLUS streamlit
 import streamlit as st
@@ -169,18 +168,19 @@ with st.sidebar:
     st.divider()
 
     # Clear chat button
-    if "chat_history" not in st.session_state:
+    if st.button("🗑️ Clear Chat"):
         today = datetime.now().strftime("%A, %d %B %Y")
-    st.session_state.chat_history = [
-        SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
-        Today's date is {today}.
-        Use DuckDuckGo tool for ALL searches including news, facts, people, places.
-        Only use Wikipedia tool when specifically asked for Wikipedia information.
-        Be friendly, smart and helpful. Keep answers clear.""")
-    ]
-    st.session_state.messages = []
-    st.rerun()  # refresh the page
+        st.session_state.chat_history = [
+            SystemMessage(content=f"""You are NOVA, a powerful AI assistant made by Farooq.
+Today's date is {today}.
+Use DuckDuckGo tool for ALL searches including news, facts, people, places.
+Only use Wikipedia tool when specifically asked for Wikipedia information.
+Be friendly, smart and helpful. Keep answers clear.""")
+        ]
+        st.session_state.messages = []
+        st.rerun()
 
+    st.divider()
     st.divider()
     st.markdown("**Built by Farooq 🚀**")
 
